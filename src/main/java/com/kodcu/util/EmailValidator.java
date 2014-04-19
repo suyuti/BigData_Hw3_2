@@ -19,7 +19,7 @@ import javax.faces.validator.ValidatorException;
  * @author hakdogan
  */
 
-@FacesValidator("emailValidator")
+//@FacesValidator("emailValidator")
 public class EmailValidator implements Validator {
 
      private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-]+(\\." +
