@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+    <title>Custom Converter and Validator</title>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap-theme.min.css"/>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js" type="text/javascript"/>
+    <!-- Bootstrap -->
+</h:head>
+<h:body style="padding: 5px;">
+<nav class="navbar navbar-default" role="navigation">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Kodcu.Com</a>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="/index.xhtml">Ana Sayfa</a></li>
+        </ul>
+        <form class="navbar-form navbar-right" role="search">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Search"/>
+            </div>
+            <button type="submit" class="btn btn-default">Ara</button>
+        </form>
+    </div><!-- /.navbar-collapse -->
+</nav>
+<center>
+    <div style="min-height: 500px; height: 100%">
+        <div style="width: 450px; margin: auto">
+            <div class="panel panel-default">
+                <div class="panel-heading">Başvuru Formu</div>
+                <br/>
+                    <h:form prependId="false">
+                        <h:messages showDetail="false"/>
+                        <h:panelGrid columns="2" cellpadding="2" cellspacing="2">
+
+                            <h:outputLabel value="Ad: "/>
+                            <h:inputText value="#{myBean.ad}" required="true" requiredMessage="Ad alanı zorunludur" maxlength="50" size="30" />
+
+                            <h:outputLabel value="Soyad: "/>
+                            <h:inputText value="#{myBean.soyad}" required="true" requiredMessage="Soyad alanı zorunludur" maxlength="50" size="30" />
+
+                            <h:outputLabel value="E-Posta: "/>
+                            <h:inputText value="#{myBean.eposta}" required="true" requiredMessage="E-Posta alanı zorunludur" maxlength="100" size="30">
+                                <f:validator validatorId="emailValidator"/>
+                            </h:inputText>
+
+                            <h:outputLabel value="KK Numarası: "/>
+                            <h:inputText value="#{myBean.kkNumara}" maxlength="19" size="30">
+                                <f:converter converterId="creditCardConverter"/>
+                            </h:inputText>
+                            <h:outputLabel/>
+                            <h:commandButton action="/success.xhtml?faces-redirect=true" styleClass="btn btn-defult" value="Kaydet"/>
+
+                        </h:panelGrid>
+                    </h:form>
+            </div>
+        </div>
+    </div>
+    </center>
+    </h:body>
+</html>
